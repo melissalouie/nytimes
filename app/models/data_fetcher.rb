@@ -7,20 +7,12 @@ class DataFetcher
     end
   end
 
-  def article
+  def get_articles(term)
     response = @nytimes_connection.get do |req|
-    req.url "/svc/search/v2/articlesearch.json", {'api-key': '1b555be9ea71ba6c7d6acb54548e4197:14:56248529'}
+    req.url "http://api.nytimes.com/svc/search/v2/articlesearch.json?q=#{term}&api-key=1b555be9ea71ba6c7d6acb54548e4197:14:56248529"
     req.headers['Content-Type'] = 'application/json'
   end
     JSON.parse(response.body)
   end
 
-  def find_article
-    response = @nytimes_connection.get do |req|
-    req.url "/svc/search/v2/articlesearch.json", {'api-key': '1b555be9ea71ba6c7d6acb54548e4197:14:56248529'}
-    req.headers['Content-Type'] = 'application/json'
-    query = "Obama"
-  end
-    JSON.parse(response.body)
-  end
 end

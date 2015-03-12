@@ -9,6 +9,13 @@ class TermsController < ApplicationController
       redirect_to term_path(@term)
     else
       render root_path
+    end
+  end
+
+  def show
+    df = DataFetcher.new
+    @term = Term.find(params[:id])
+    @articles = df.get_articles(@term.text)
   end
 
   private

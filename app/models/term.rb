@@ -1,3 +1,3 @@
 class Term < ActiveRecord::Base
-  validates :term, presence: true
+  validates :text, presence: true
 end
